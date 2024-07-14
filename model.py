@@ -5,7 +5,7 @@ data = Path("Data/Training_Data")
 if not data.exists():
     exit("Data folder does not exist")
     
-from imports import tf, plt, keras, layers, Sequential, PIL, randint, characters
+from imports import tf, plt, keras, layers, Sequential, randint, characters, ReduceLROnPlateau
 # -------------------------------------------------------
 
 def create_model():
@@ -16,7 +16,7 @@ def create_model():
     random_seed = randint(1, 1001)
     training_dataset = tf.keras.utils.image_dataset_from_directory(
         data,
-        validation_split=0.2,
+        validation_split=0.15,
         subset="training",
         seed=random_seed,
         image_size=(img_h, img_w),
@@ -25,7 +25,7 @@ def create_model():
 
     validation_dataset = tf.keras.utils.image_dataset_from_directory(
         data,
-        validation_split=0.2,
+        validation_split=0.15,
         subset="validation",
         seed=random_seed,
         image_size=(img_h, img_w),
@@ -48,31 +48,45 @@ def create_model():
 
     normalization_layer = layers.Rescaling(1./255)
     normalized_ds = training_dataset.map(lambda x, y: (normalization_layer(x), y))
-    image_batch, keras.labels_batch = next(iter(normalized_ds))
+    _ , keras.labels_batch = next(iter(normalized_ds))
 
     num_classes = len(characters)
-
+    
     model = Sequential([
-    layers.Rescaling(1./255, input_shape=(img_h, img_w, 3)),
-    layers.Conv2D(16, 3, padding='same', activation='relu'),
-    layers.MaxPooling2D(),
-    layers.Conv2D(32, 3, padding='same', activation='relu'),
-    layers.MaxPooling2D(),
-    layers.Conv2D(64, 3, padding='same', activation='relu'),
-    layers.MaxPooling2D(),
-    layers.Flatten(),
-    layers.Dense(128, activation='relu'),
-    layers.Dense(num_classes)
+        layers.Rescaling(1./255, input_shape=(img_h, img_w, 3)),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Dropout(0.3),
+        
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Dropout(0.3),
+        
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Dropout(0.3),
+        
+        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Dropout(0.3),
+        
+        layers.Flatten(),
+        layers.Dense(256, activation='relu'),
+        layers.Dropout(0.5),
+        layers.Dense(num_classes)
     ])
     model.compile(optimizer='adam',
                 loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
                 metrics=['accuracy'])
     model.summary()
+    
     epochs=15
+    reduce_learning_rate = ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=2, min_lr=0.005)
     history = model.fit(
-    training_dataset,
-    validation_data=validation_dataset,
-    epochs=epochs
+        training_dataset,
+        validation_data=validation_dataset,
+        epochs=epochs,
+        callbacks=[reduce_learning_rate]
     )
     acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']
