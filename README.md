@@ -3,7 +3,7 @@
 <img src="https://github.com/user-attachments/assets/8be3e0ef-9331-47a9-ad8e-4d7730acbed6"
   height=200
   width=200>
-<h3>A machine learning model that can identify images of characters</h3>
+<h3>A machine learning model that can identify images of One Piece characters</h3>
 </div>
 <hr>
 
