@@ -15,7 +15,7 @@
   <li>Pillow 10.4.0</li>
   <li>TensorFlow 2.17.0</li>
   <li>
-    <a href="https://www.kaggle.com/datasets/ibrahimserouis99/one-piece-image-classifier/data?select=Data">One Piece Character Image Set.</a>
+    <a href="https://www.kaggle.com/datasets/ibrahimserouis99/one-piece-image-classifier/data?select=Data">One Piece Character Image Set</a>
   </li>
 </ul>
 
