@@ -58,18 +58,6 @@ python3 main.py
     The model averages between 65% and 75% accuracy and is slightly overfit.
   </li>
 
-
-  <li>
-    Users will be shown 9 random images and the model's classification of each, alongside the training history
-  </li>
-</ul>
-<img src="https://github.com/user-attachments/assets/d6cf201d-8649-4dec-9dad-185a3b15124d"
-  width=480
-  height=480>
-<img src="https://github.com/user-attachments/assets/79672fd2-9f98-4c9c-b737-929790cdbdcf"
-  width=480
-  height=480>
-
 ```sh
 Epoch 1/15
 312/312 ━━━━━━━━━━━━━━━━━━━━ 26s 58ms/step - accuracy: 0.0551 - loss: 2.9549 - val_accuracy: 0.0739 - val_loss: 2.8883 - learning_rate: 0.0010
@@ -102,6 +90,17 @@ Epoch 14/15
 Epoch 15/15
 312/312 ━━━━━━━━━━━━━━━━━━━━ 7s 22ms/step - accuracy: 0.7769 - loss: 0.6842 - val_accuracy: 0.6784 - val_loss: 1.1223 - learning_rate: 0.0010
 ```
+  <li>
+    Users will be shown 9 random images and the model's classification of each, alongside the training history
+  </li>
+</ul>
+<img src="https://github.com/user-attachments/assets/d6cf201d-8649-4dec-9dad-185a3b15124d"
+  width=480
+  height=480>
+<img src="https://github.com/user-attachments/assets/79672fd2-9f98-4c9c-b737-929790cdbdcf"
+  width=480
+  height=480>
+
 <div align="center">
 <img src="https://github.com/user-attachments/assets/97957567-6003-4c15-843c-d0cee01dae21"
   width=480
