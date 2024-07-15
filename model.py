@@ -5,9 +5,8 @@ data = Path("Data/Training_Data")
 if not data.exists():
     exit("Data folder does not exist")
     
-from imports import tf, plt, keras, layers, Sequential, randint, characters, ReduceLROnPlateau
+from imports import tf, plt, keras, layers, Sequential, randint, characters, ReduceLROnPlateau, regularizers
 # -------------------------------------------------------
-
 def create_model():
     batch = 32
     img_h = 180
@@ -45,7 +44,6 @@ def create_model():
     training_dataset = training_dataset.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
     validation_dataset = validation_dataset.cache().prefetch(buffer_size=AUTOTUNE)
 
-
     normalization_layer = layers.Rescaling(1./255)
     normalized_ds = training_dataset.map(lambda x, y: (normalization_layer(x), y))
     _ , keras.labels_batch = next(iter(normalized_ds))
@@ -54,29 +52,34 @@ def create_model():
     
     model = Sequential([
         layers.Rescaling(1./255, input_shape=(img_h, img_w, 3)),
-        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.Conv2D(32, 3, padding='same'),
+        layers.Activation('relu'),
         layers.MaxPooling2D(),
         layers.Dropout(0.3),
         
-        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.Conv2D(64, 3, padding='same'),
+        layers.Activation('relu'),
         layers.MaxPooling2D(),
         layers.Dropout(0.3),
         
-        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.Conv2D(64, 3, padding='same'),
+        layers.Activation('relu'),
         layers.MaxPooling2D(),
         layers.Dropout(0.3),
         
-        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.Conv2D(128, 3, padding='same'),
+        layers.Activation('relu'),
         layers.MaxPooling2D(),
         layers.Dropout(0.3),
         
         layers.Flatten(),
-        layers.Dense(256, activation='relu'),
+        layers.Dense(256),
+        layers.Activation('relu'),
         layers.Dropout(0.5),
-        layers.Dense(num_classes)
+        layers.Dense(num_classes, activation='softmax')
     ])
     model.compile(optimizer='adam',
-                loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False),
                 metrics=['accuracy'])
     model.summary()
     
