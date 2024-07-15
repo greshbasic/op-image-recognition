@@ -48,7 +48,7 @@ python3 main.py
 <ul>
   <li>
     A lot of information is logged to the console, mostly warnings. You can ignore those 
-    as that aren't going to negatively impact the model. However, if you want to build upon
+    as they aren't going to negatively impact the model. However, if you want to build upon
     my work it may eventually become something you need to look into.
   </li>
   <li>
