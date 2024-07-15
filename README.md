@@ -1,5 +1,5 @@
 <div align="center">
-<h1>One Piece Image Recognition (WIP)</h1>
+<h1>One Piece Image Recognition</h1>
 <img src="https://github.com/user-attachments/assets/8be3e0ef-9331-47a9-ad8e-4d7730acbed6"
   height=200
   width=200>
