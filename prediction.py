@@ -2,6 +2,7 @@ from imports import tf, keras, PIL, plt, characters
 from PIL import Image
 
 def predict(new_model, choice):
+    
     choice_file = ""
     if choice == 1:
         choice_file = "new_luffy"
