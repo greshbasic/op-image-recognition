@@ -55,7 +55,7 @@ python3 main.py
     On my mid-range PC build it takes about 2 minutes for the model to fully train.
   </li>
   <li>
-    The model averages between 65% and 75% validation accuracy and is slightly overfit.
+    The model averages between 70-75% validation accuracy and is slightly overfit.
   </li>
 
 ```sh
