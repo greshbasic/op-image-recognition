@@ -30,8 +30,8 @@
 **Setup and Usage**:
 1. Clone and enter the repo
 ```sh
-git clone git@github.com:greshbasic/OP-Image-Recognition.git
-cd OP-Image-Recognition
+git clone git@github.com:greshbasic/op-image-recognition.git
+cd op-image-recognition
 ```
 2. Create a venv and install requirements
 ```sh
