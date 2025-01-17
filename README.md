@@ -23,7 +23,7 @@
 <ul>
   <li>
     Installing TensorFlow can be finicky, check out the official
-    <a href="https://www.tensorflow.org/install/pip">TensorFlow pip install guide if you are having issues</a>.
+    <a href="https://www.tensorflow.org/install/pip">TensorFlow pip install guide</a> if you are having issues.
   </li>
 </ul>
 
