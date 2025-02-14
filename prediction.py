@@ -4,16 +4,16 @@ from PIL import Image
 def predict(new_model, choice):
     
     choice_file = ""
-    if choice == 1:
-        choice_file = "new_luffy"
-    elif choice == 2:
-        choice_file = "new_sanji"
-    elif choice == 3:
-        choice_file = "new_law"
-    elif choice == 4:
-        choice_file = "new_chopper"
-    elif choice == 5:
-        return
+    # if choice == 1:
+    #     choice_file = "new_luffy"
+    # elif choice == 2:
+    #     choice_file = "new_sanji"
+    # elif choice == 3:
+    #     choice_file = "new_law"
+    # elif choice == 4:
+    #     choice_file = "new_chopper"
+    # elif choice == 5:
+    #     return
         
     new_img_path = f"Data/New_Data/{choice_file}.png"
     img = Image.open(new_img_path).convert("RGB")
